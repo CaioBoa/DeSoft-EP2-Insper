@@ -66,3 +66,24 @@ def posicoes_possiveis(mesa,pecas):
                 sol.append(i)
             i += 1
     return sol
+
+def adiciona_na_mesa(peca,mesa):
+    if len(mesa) == 0:
+        mesa.append(peca)
+    else:
+        if peca[1] == mesa[0][0]:
+            mesa.insert(0,peca)
+        elif peca[0] == mesa[0][0]:
+            k = peca[1]
+            del peca[1]
+            peca.insert(0,k)
+            mesa.insert(0,peca)
+        elif peca[0] == mesa[-1][1]:
+            mesa.append(peca)
+        elif peca[1] == mesa[-1][1]:
+            k = peca[1]
+            del peca[1]
+            peca.insert(0,k)
+            mesa.append(peca)
+    return mesa
+
