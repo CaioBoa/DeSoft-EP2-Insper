@@ -150,7 +150,7 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
                 peca_escolhida = int(input("Escolha uma peça"))
                 #joga a peçaa na mesa caso seja possível
                 if peca_escolhida in possiveis:
-                    jogo["mesa"] = jogo["mesa"] = adiciona_na_mesa(jogo["jogadores"][jogador_atual][peca_escolhida],jogo["mesa"])
+                    jogo["mesa"] = adiciona_na_mesa(jogo["jogadores"][jogador_atual][peca_escolhida],jogo["mesa"])
                     P = True
                 #pede para jogar outra peça
                 if peca_escolhida not in possiveis:
