@@ -114,19 +114,19 @@ def jogada_bot(mao,mesa):
     return r
 
 #pergunta numero de jogadores
-nj = int(input("Quantos Jogadores?? (2-4)"))
+numero_jogadores = int(input("Quantos Jogadores?? (2-4)"))
+print("")
 #distribui as peças
-jogo = inicia_jogo(nj,cria_pecas())
+jogo = inicia_jogo(numero_jogadores,cria_pecas())
 #cria uma ordem para os jogadores
-ordem = ordem_jogadores(nj)
+ordem = ordem_jogadores(numero_jogadores)
 #início da rodada
 while verifica_ganhador(jogo["jogadores"]) == -1:
-    print("MESA:{0}".format(jogo["mesa"]))
-
     #define turnos para os jogadores
     for jogador_atual in ordem:
         #caso seja um bot jogando
         if jogador_atual != 0:
+            print("Turno do jogador {0}".format(jogador_atual))
             #para saber se existe jogadas possíveis ao bot ou ele terá que comprar do monte
             k = jogada_bot(jogo["jogadores"][jogador_atual],jogo["mesa"])
             #se tiver que comprar do monte
@@ -139,8 +139,13 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
             else:
                 #joga peça possível aleatória na mesa
                 jogo["mesa"] = adiciona_na_mesa(jogo["jogadores"][jogador_atual][k],jogo["mesa"])
+                del jogo["jogadores"][jogador_atual][k]
+            print("MESA:{0}\n".format(jogo["mesa"]))
         #caso seja o usuário jogando
         if jogador_atual == 0:
+            print("Seu turno!")
+            print("MESA:{0}".format(jogo["mesa"]))
+            print("Suas peças: {0}\n".format(jogo["jogadores"][0]))
             #define lista de jogadas possiveis
             possiveis = posicoes_possiveis(jogo["mesa"],jogo["jogadores"][jogador_atual])
             #variavel para repetição do loop caso jogador não escolha uma peça possivel
@@ -148,20 +153,29 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
             #se existirem jogadas possiveis
             while len(possiveis) > 0 and P == False:
                 #define uma peca para jogar
-                peca_escolhida = int(input("Escolha uma peça"))
+                peca_escolhida = int(input("Escolha uma peça : "))-1
                 #joga a peçaa na mesa caso seja possível
                 if peca_escolhida in possiveis:
                     jogo["mesa"] = adiciona_na_mesa(jogo["jogadores"][jogador_atual][peca_escolhida],jogo["mesa"])
+                    del jogo["jogadores"][jogador_atual][peca_escolhida]
+                    print("MESA:{0}\n".format(jogo["mesa"]))
                     P = True
                 #pede para jogar outra peça
                 if peca_escolhida not in possiveis:
-                    print("Escolha outra peça")
+                    print("Escolha outra peça!\n")
             #se não existirem jogadas possíveis ao jogador
-            else:
+            if len(possiveis) == 0:
+                print("Não existem jogadas possíveis nesse turno então vamos comprar do monte para você")
+                print("Suas peças: {0}\n".format(jogo["jogadores"][0]))
                 #se o monte tiver peças disponíveis
                 if len(jogo["monte"]) > 0:
                     #compra do monte
                     jogo["jogadores"][jogador_atual].append(jogo["monte"][-1])
+if verifica_ganhador(jogo["jogadores"]) == 0:
+    print("\nVocê venceu! Parabéns")
+if verifica_ganhador(jogo["jogadores"]) > 0:
+    print("\nO jogador {0} venceu! Não foi dessa vez".format(verifica_ganhador(jogo["jogadores"])))
+
 
 
 
