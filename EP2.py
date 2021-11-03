@@ -16,20 +16,28 @@ def cria_pecas():
 
 #distribui a lista de pecas entre o numero de jogadores (7 para cada) e coloca o resto no monte além de criar a lista mesa
 def inicia_jogo(nj,pecas):
-    jogo = {}
-    jogadores = {}
-    i = 0
-    j = 0
-    while i < nj:
-        dist = []
-        while len(dist) < 7:
-            dist.append(pecas[j])
-            j += 1
-        jogadores[i] = dist
-        i += 1
-    jogo["jogadores"] = jogadores
-    jogo["monte"] = pecas
-    jogo["mesa"] = []
+    jogo={}
+    jogadores={}
+    monte=[]
+    
+
+    for i in range(0,nj):
+        jogadores[i]=[]
+
+    ip=0
+    while ip <= len(pecas)-1:
+        for j in range(0,nj):
+            while len(jogadores[j])<7:
+                jogadores[j].append(pecas[ip])
+                ip+=1
+
+        if ip<=len(pecas)-1:
+            monte.append(pecas[ip])
+        ip+=1
+    jogo['jogadores']=jogadores
+    jogo['monte']=monte
+    jogo['mesa']=[]
+
     return jogo
 
 #verifica as pecas de todos os jogadores e caso algum não tenha pecas em mão retorna seu número (caso contrário retorna -1)
