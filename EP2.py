@@ -19,12 +19,11 @@ def inicia_jogo(nj,pecas):
     jogo = {}
     jogadores = {}
     i = 0
+    j = 0
     while i < nj:
         dist = []
-        j = 0
         while len(dist) < 7:
             dist.append(pecas[j])
-            del pecas[j]
             j += 1
         jogadores[i] = dist
         i += 1
