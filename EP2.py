@@ -114,14 +114,15 @@ def jogada_bot(mao,mesa):
     return r
 
 #pergunta numero de jogadores
-numero_jogadores = input("Quantos Jogadores?? (2-4)")
+nj = int(input("Quantos Jogadores?? (2-4)"))
 #distribui as peças
-jogo = inicia_jogo(numero_jogadores,cria_pecas())
+jogo = inicia_jogo(nj,cria_pecas())
 #cria uma ordem para os jogadores
-ordem = ordem_jogadores(numero_jogadores)
+ordem = ordem_jogadores(nj)
 #início da rodada
 while verifica_ganhador(jogo["jogadores"]) == -1:
     print("MESA:{0}".format(jogo["mesa"]))
+
     #define turnos para os jogadores
     for jogador_atual in ordem:
         #caso seja um bot jogando
