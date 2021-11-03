@@ -140,11 +140,12 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
                 #joga peça possível aleatória na mesa
                 jogo["mesa"] = adiciona_na_mesa(jogo["jogadores"][jogador_atual][k],jogo["mesa"])
                 del jogo["jogadores"][jogador_atual][k]
-            print("MESA:{0}\n".format(jogo["mesa"]))
+            print("MESA:{0}".format(jogo["mesa"]))
+            print("Peças do Jogador: {0}\n".format(jogo["jogadores"][jogador_atual]))
         #caso seja o usuário jogando
         if jogador_atual == 0:
             print("Seu turno!")
-            print("MESA:{0}".format(jogo["mesa"]))
+            print("MESA: {0}".format(jogo["mesa"]))
             print("Suas peças: {0}\n".format(jogo["jogadores"][0]))
             #define lista de jogadas possiveis
             possiveis = posicoes_possiveis(jogo["mesa"],jogo["jogadores"][jogador_atual])
@@ -158,7 +159,7 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
                 if peca_escolhida in possiveis:
                     jogo["mesa"] = adiciona_na_mesa(jogo["jogadores"][jogador_atual][peca_escolhida],jogo["mesa"])
                     del jogo["jogadores"][jogador_atual][peca_escolhida]
-                    print("MESA:{0}\n".format(jogo["mesa"]))
+                    print("MESA: {0}\n".format(jogo["mesa"]))
                     P = True
                 #pede para jogar outra peça
                 if peca_escolhida not in possiveis:
@@ -171,10 +172,11 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
                 if len(jogo["monte"]) > 0:
                     #compra do monte
                     jogo["jogadores"][jogador_atual].append(jogo["monte"][-1])
+
 if verifica_ganhador(jogo["jogadores"]) == 0:
-    print("\nVocê venceu! Parabéns")
+    print("Você venceu! Parabéns")
 if verifica_ganhador(jogo["jogadores"]) > 0:
-    print("\nO jogador {0} venceu! Não foi dessa vez".format(verifica_ganhador(jogo["jogadores"])))
+    print("O jogador {0} venceu! Não foi dessa vez".format(verifica_ganhador(jogo["jogadores"])))
 
 
 
