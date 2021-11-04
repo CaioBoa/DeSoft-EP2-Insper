@@ -165,13 +165,30 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
             print("Seu turno!\n")
             print("Tamanho do Monte: {0}".format(len(jogo["monte"])))
             print("MESA: {0}\n".format(jogo["mesa"]))
-            print("Suas peças: {0}\n".format(jogo["jogadores"][0]))
+            print("Suas peças: {0}".format(jogo["jogadores"][0]))
+            #enumera as pecas
+            x=""
+            for i in range(len(jogo["jogadores"][0])):
+                    x+="{0}       ".format(i+1)
+                
+                
+            print("                {0}\n".format(x))
             #define lista de jogadas possiveis
             possiveis = posicoes_possiveis(jogo["mesa"],jogo["jogadores"][jogador_atual])
             #variavel para repetição do loop caso jogador não escolha uma peça possivel
             P = False
             #se existirem jogadas possiveis
             while len(possiveis) > 0 and P == False:
+                #mostra jogadas possiveis
+                #enumera as pecas possiveis
+                z=[]
+                x=""
+                for i in possiveis:
+                    z.append(jogo["jogadores"][jogador_atual][i])
+                    x+="{0}       ".format(i+1)
+                print("Você pode jogar as peças: {0}".format(z))
+                
+                print("                              {0}".format(x))
                 #define uma peca para jogar
                 peca_escolhida = int(input("Escolha uma peça: "))-1
                 print('')
