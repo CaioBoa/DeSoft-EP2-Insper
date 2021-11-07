@@ -122,6 +122,9 @@ def jogada_bot(mao,mesa):
 
 #pergunta numero de jogadores
 numero_jogadores = int(input("Quantos Jogadores?? (2-4)"))
+while numero_jogadores<2 or numero_jogadores>4:
+    print("\nNúmero de jogadores inválido!\n")
+    numero_jogadores = int(input("Quantos Jogadores?? (2-4)"))
 print("")
 #distribui as peças
 jogo = inicia_jogo(numero_jogadores,cria_pecas())
