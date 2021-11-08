@@ -219,6 +219,7 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
                     jogo["jogadores"][jogador_atual].append(jogo["monte"][-1])
                     #deleta do monte
                     del jogo["monte"][-1]
+                    #mostra pro jogador que comprou peca
                     k="zzz"
                     while k!="ok":
                         k=input("Digite 'ok' para continuar: ")
