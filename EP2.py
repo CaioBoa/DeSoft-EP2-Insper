@@ -210,12 +210,19 @@ while verifica_ganhador(jogo["jogadores"]) == -1:
                     print("Escolha outra peça!\n")
             #se não existirem jogadas possíveis ao jogador
             if len(possiveis) == 0:
+                
                 print("Não existem jogadas possíveis nesse turno então vamos comprar do monte para você")
                 print("Suas peças: {0}\n".format(jogo["jogadores"][0]))
                 #se o monte tiver peças disponíveis
                 if len(jogo["monte"]) > 0:
                     #compra do monte
                     jogo["jogadores"][jogador_atual].append(jogo["monte"][-1])
+                    #deleta do monte
+                    del jogo["monte"][-1]
+                    k="zzz"
+                    while k!="ok":
+                        k=input("Digite 'ok' para continuar: ")
+                
 
 if verifica_ganhador(jogo["jogadores"]) == 0:
     print("Você venceu! Parabéns")
